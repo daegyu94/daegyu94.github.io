@@ -95,11 +95,11 @@ analytics:
 
 # Site Author
 author:
-  name             : "Your Name"
+  name             : "Daegyu Han"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I am an **amazing** person."
-  location         : "Somewhere"
-  email            :
+  bio              : "I'm Ph.D. student at DICL Lab, Sungkyunkwan University"
+  location         : "Suwon, South Korea"
+  email            : "hdg9400 at skku dot edu"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
