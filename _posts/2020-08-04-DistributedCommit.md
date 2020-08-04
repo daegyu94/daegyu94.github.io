@@ -50,15 +50,15 @@ categories: Distributed_Systems Distributed_Commit
 
 ### Steps taken by Coordinotor (2PC)
 
-![Actions by coordinator](./img/Actions by coordinator.JPG)
+![Actions by coordinator](../assets/img/Actions by coordinator.JPG)
 
 ### Steps taken by Participant (2PC)
 
-![Actions by participant](./img/Actions by participant.JPG)
+![Actions by participant](../assets/img/Actions by participant.JPG)
 
  ### Steps for handling incoming decision requests (2PC)
 
-![Actions for handling decision requests](./img/Actions for handling decision requests.JPG)
+![Actions for handling decision requests](../assets/img/Actions for handling decision requests.JPG)
 
 * Node  needs background thread to handle DECISION_REQUEST
 
@@ -100,7 +100,7 @@ categories: Distributed_Systems Distributed_Commit
 * The states of the coordinator and each participant satisfy the following two conditions
   * **There is no single state from which it is possible to make a transition directly to either a COMMIT or an ABORT state**
   * **There is no state in which it is not possible to make a final decision, and from which a transition to COMMIT state can be made**
-* ![3PC](./img/3PC.JPG)
+* ![3PC](../assets/img/3PC.JPG)
 * PRECOMMIT 상태가 추가된다. Coordinator는 READY-COMMIT을 받으면 GLOBAL_COMMIT을 한다.
 
 ### 3PC Protocol
