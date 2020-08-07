@@ -72,7 +72,7 @@ categories: PMKV
 
 ### Insertion with FAST for TSO
 
-* ![1. FAST Inserting](./img/1. FAST Inserting.PNG)
+* ![1. FAST Inserting](img/1. FAST Inserting.PNG)
 * B+-tree에서는 key, pointer(key, value)를 함께 저장하고 항상 함께 flush된다.
 * 먼저 (2)와 같이 sentinal 포인터 Null을 오른쪽으로 이동한다. 다음으로, 마지막 키 40의 오른쪽 자식 포인터 P5를 오른쪽으로 이동 한 다음 (3)과 (4)에 표시된 것처럼 키 40을 오른쪽으로 이동한다. (3) 및 (4)에서, 우리는 각각 마지막 키로서 가비지 키 및 복제 키 (40)를 갖는다. **이러한 불일치는 다른 트랜잭션이 동일한 포인터 사이의 키를 무시하도록 허용함으로써 허용 될 수 있다**. (P5 및 P5 *).
 * (5)에서, P5를 덮어 써서 P4를 이동시킨다. 이 atomic write은 이전 키 40  ([P4,40, P4 *])을 무효화하고 시프트 된 키 40 ([P4 *, 40, P5 *])의 유효성을 검사합니다. **이 시점에서 시스템이 충돌하더라도 중복 포인터 ([P4,40, P4 *]) 사이의 키 40은 무시된다.** (왼쪽 오른쪽 포인터 주소가 같기 때문...)
@@ -104,7 +104,7 @@ categories: PMKV
 * 디스크 기반 B- 트리와 PM에 대한 최근 제안 된 B +-트리 변형에서 여러 트리 노드를 분할하거나 병합 할 때 로깅 또는 저널링이 사용되었다. 
   * 트리 노드가 분할되면 (1) sibling 노드를 만들고 (2) 전체 노드에서 새로운 sibling 노드로 항목의 절반을 이동하고 (3) 부모 노드에 새로운 sbling 노드에 대한 포인터를 삽입하고 .
   * 이 세 단계는 atmoic하게 수행해야하므로 로깅을 사용해야 한다. 그러나 로깅은 더티 페이지를 복제한다. 쓰기 트래픽을 증가시킬뿐만 아니라 트리 노드에 대한 동시 액세스도 차단한다.
-* Algorithm 2에 설명 된 FAST in-place update와 FAIR 노드 분할 알고리즘을 활용하여 비싼 로깅을 피할 수 있다. B-link tree [25]에서와 같이 리프 노드뿐만 아니라 내부 노드를 위한 sibling 노드 포인터를 저장한다.![2. FAIR Node Split](./img/2. FAIR Node Split.PNG)
+* Algorithm 2에 설명 된 FAST in-place update와 FAIR 노드 분할 알고리즘을 활용하여 비싼 로깅을 피할 수 있다. B-link tree [25]에서와 같이 리프 노드뿐만 아니라 내부 노드를 위한 sibling 노드 포인터를 저장한다.![2. FAIR Node Split](img/2. FAIR Node Split.PNG)
 
 * 먼저 (1)과 같이 트리에 노드가 하나만 있다고 가정. 
   * 새 키 50을 삽입하면 리프 노드 A가 분할된다. (2)에서 PM heap manager를 사용하여 sibling 노드 B를 작성하고, 노드에 있는 element 절반을 복사하고, 새 노드에 대한 캐시 라인 플러시를 호출하고, 노드 A의 sibling 포인터가 sibling 노드 B를 가리 키도록합니다. Overfull 된 노드 A에서 마이그레이션 된 항목을 삭제하기 전에 sbling pointer가 노드 A 써져야한다. 
